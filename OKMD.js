@@ -2,17 +2,15 @@
  * Created by alex on 24.4.17.
  */
 var p=1,m=1,q=1;
+
 var A=[],B=[],G=[],H=[];
 var C=[];
 
 var sum=1;
 var multi=1;
 var equal=1;
-
-
 var time=0;
-
-var n=50;
+var n=1;
 
 function createMatrix(row,colom) {
     var matrix=[];
@@ -22,7 +20,6 @@ function createMatrix(row,colom) {
     for(var i=0;i<row;i++){
         for(var j=0;j<colom;j++)
             matrix[i][j]=(Math.random()*2-1).toFixed(1);
-            // matrix[i][j]=Math.floor(Math.random() * (5 - 2)) + 2
     }
     return matrix;
 }
@@ -52,9 +49,10 @@ function executeAlgorithm() {
     for(var i=0;i<C.length;i++){
         for(var j=0;j<C[i].length;j++){
             if(ifPart(i,j))
-                C[i][j]=thenPart(i,j).toFixed(3);
+                C[i][j]=thenPart(i,j).toFixed(2);
             else
-                C[i][j]=elsePart(i,j).toFixed(3);
+                C[i][j]=elsePart(i,j).toFixed(2);
+
         }
 
     }
@@ -69,8 +67,10 @@ function ifPart(i, j) {
             answer=true;
         }
 
-    time+=Math.ceil(m/n)*equal;
 
+
+    time+=Math.ceil(m/n)*equal;
+    console.log(answer);
     return answer;
 }
 function thenPart(i, j) {
@@ -78,10 +78,11 @@ function thenPart(i, j) {
 
     for(var k=0;k<m;k++)
         res*=A[i][k]*B[k][j];
-
+    console.log(time);
     time+=Math.ceil(m/n)*multi;
+    console.log(time);
     time+=Math.ceil((m-1)/n)*multi;
-
+    console.log(time);
     return res;
 
 }
@@ -90,10 +91,11 @@ function elsePart(i, j) {
 
     for(var k=0;k<m;k++)
         res+=A[i][k]*B[k][j];
-
+    console.log(time);
     time+=Math.ceil(m/n)*multi;
+    console.log(time);
     time+=Math.ceil((m-1)/n)*sum;
-
+    console.log(time);
     return res;
 
 }
