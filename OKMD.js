@@ -17,6 +17,10 @@ var n=1;
 var iMax=0;
 var jMax=0;
 
+var Lsum=0;
+var Lavg=0;
+
+
 function createMatrix(row,colom) {
     var matrix=[];
     for(var i=0; i<row; i++) {
@@ -72,6 +76,11 @@ function ifPart(i, j) {
             answer=true;
         }
 
+    Lsum+=m*equal;
+    Lavg+=m*equal*2;
+
+
+
 
 
     time+=Math.ceil(m/n)*equal;
@@ -83,11 +92,16 @@ function thenPart(i, j) {
 
     for(var k=0;k<m;k++)
         res*=A[i][k]*B[k][j];
-    // console.log(time);
+
+    Lsum+=(m+m-1)*multi;
+    Lavg+=2*m*multi;
+    Lavg+=Math.ceil((m-1)/n)*2*m*multi;
+
+
     time+=Math.ceil(m/n)*multi;
-    // console.log(time);
+
     time+=Math.ceil((m-1)/n)*multi;
-    // console.log(time);
+
     return res;
 
 }
@@ -96,11 +110,16 @@ function elsePart(i, j) {
 
     for(var k=0;k<m;k++)
         res+=A[i][k]*B[k][j];
-    // console.log(time);
+
+    Lsum+=(m)*multi;
+    Lsum+=(m-1)*sum;
+    Lavg+=2*m*multi;
+    Lavg+=Math.ceil((m-1)/n)*2*m*sum;
+
     time+=Math.ceil(m/n)*multi;
-    // console.log(time);
+
     time+=Math.ceil((m-1)/n)*sum;
-    // console.log(time);
+
     return res;
 
 }
