@@ -229,6 +229,11 @@ $(document).ready(function(){
                 curveType: 'function',
                 legend: { position: 'bottom' }
             };
+            var options3 = {
+                title: 'D(n,r)',
+                curveType: 'function',
+                legend: { position: 'bottom' }
+            };
 
             var data = google.visualization.arrayToDataTable([
                 ['n', 'r=4', 'r=8', 'r=12', 'r=16', 'r=20', 'r=24', 'r=28', 'r=32', 'r=36'],
@@ -420,7 +425,7 @@ $(document).ready(function(){
 
             chart = new google.charts.Line(document.getElementById('DN'));
 
-            chart.draw(data, google.charts.Line.convertOptions(options2));
+            chart.draw(data, google.charts.Line.convertOptions(options3));
 
             data = google.visualization.arrayToDataTable([
                 ['r', 'n=1', 'n=2', 'n=3', 'n=4', 'n=5', 'n=6', 'n=7', 'n=8', 'n=9'],
@@ -487,7 +492,7 @@ $(document).ready(function(){
 
             chart = new google.charts.Line(document.getElementById('DR'));
 
-            chart.draw(data, google.charts.Line.convertOptions(options2));
+            chart.draw(data, google.charts.Line.convertOptions(options3));
         }
 
 
