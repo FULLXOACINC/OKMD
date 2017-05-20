@@ -76,12 +76,9 @@ function ifPart(i, j) {
             answer=true;
         }
 
-    Lsum+=m*equal;
-    Lavg+=m*equal*2;
-
-
-
-
+    Lsum=Math.ceil(m/n)*equal+parseInt(Lsum);
+    Lavg=Math.ceil(m/n)*2*m*equal+parseInt(Lavg);
+    // console.log(Lsum+" "+Lavg);
 
     time+=Math.ceil(m/n)*equal;
     // console.log(answer);
@@ -93,10 +90,44 @@ function thenPart(i, j) {
     for(var k=0;k<m;k++)
         res*=A[i][k]*B[k][j];
 
-    Lsum+=(m+m-1)*multi;
-    Lavg+=2*m*multi;
-    Lavg+=Math.ceil((m-1)/n)*2*m*multi;
+    // Lsum=Math.ceil(m/n)*multi+parseInt(Lsum);
+    // Lsum=parseInt(multi)+parseInt(Lsum);
+    // if(m>2)
+    //     Lsum=Math.ceil((m-2)/n)*multi+parseInt(Lsum);
+    //
+    // if(n>m){
+    //     if(m>1)
+    //         Lavg=(Lsum-((m-2)/n/((m)/n)))*4*q*p*m;
+    //     else
+    //         Lavg=Lsum*4*q*p*m;
+    // }
+    // else{
+    //     Lavg=Math.ceil(m/n)*2*m*multi+parseInt(Lavg);
+    //     Lavg=parseInt(multi*2*m)+parseInt(Lavg);
+    //     if(m>2)
+    //         Lavg=Math.ceil((m-2)/n)*2*m*multi+parseInt(Lavg);
+    //     // if((m-2)%n!=0)
+    // }
+    //
+    // if(m/n>3)
+    //     Lavg=parseInt(Lavg)-parseInt((m)/n*2*m*multi);
 
+    Lsum=Math.ceil(m/n)*multi+parseInt(Lsum);
+    Lsum=Math.ceil(m-1/n)*multi+parseInt(Lsum);
+    Lsum=Math.ceil((m)/n)*multi+parseInt(Lsum);
+
+    if(n>m){
+        if(m>1)
+            Lavg=(Lsum-((m-2)/n/((m)/n)))*4*q*p*m;
+        else
+            Lavg=Lsum*4*q*p*m;
+    }
+    else {
+        Lavg = Math.ceil(m / n) * 2 * m * multi + parseInt(Lavg);
+        Lavg = parseInt(multi * 2 * m) + parseInt(Lavg);
+        if (m > 2)
+            Lavg = Math.ceil((m - 2) / n) * 2 * m * multi + parseInt(Lavg);
+    }
 
     time+=Math.ceil(m/n)*multi;
 
@@ -111,13 +142,42 @@ function elsePart(i, j) {
     for(var k=0;k<m;k++)
         res+=A[i][k]*B[k][j];
 
-    Lsum+=(m)*multi;
-    Lsum+=(m-1)*sum;
-    Lavg+=2*m*multi;
-    Lavg+=Math.ceil((m-1)/n)*2*m*sum;
+    // Lsum=Math.ceil(m/n)*multi+parseInt(Lsum);
+    // Lsum=parseInt(sum)+parseInt(Lsum);
+    // if(m>2)
+    //     Lsum=Math.ceil((m-2)/n)*sum+parseInt(Lsum);
+    //
+    // if(n>m){
+    //     if(m>1)
+    //         Lavg=(Lsum-((m-2)/n/((m)/n)))*4*q*p*m;
+    //     else
+    //         Lavg=Lsum*4*q*p*m;
+    // }
+    // else{
+    //     Lavg=Math.ceil(m/n)*2*m*multi+parseInt(Lavg);
+    //     Lavg=parseInt(sum*2*m)+parseInt(Lavg);
+    //     if(m>1)
+    //         Lavg=Math.ceil((m-2)/n)*2*m*sum+parseInt(Lavg);
+    // }
+    //     Lavg=parseInt(Lavg)-parseInt((m)/n*2*m*sum);
 
+    Lsum=Math.ceil(m/n)*multi+parseInt(Lsum);
+    Lsum=Math.ceil(m-1/n)*sum+parseInt(Lsum);
+    Lsum=Math.ceil((m)/n)*sum+parseInt(Lsum);
+
+    if(n>m){
+            if(m>1)
+                Lavg=(Lsum-((m-2)/n/((m)/n)))*4*q*p*m;
+            else
+                Lavg=Lsum*4*q*p*m;
+        }
+        else {
+        Lavg = Math.ceil(m / n) * 2 * m * multi + parseInt(Lavg);
+        Lavg = parseInt(sum * 2 * m) + parseInt(Lavg);
+        if (m > 2)
+            Lavg = Math.ceil((m - 2) / n) * 2 * m * sum + parseInt(Lavg);
+    }
     time+=Math.ceil(m/n)*multi;
-
     time+=Math.ceil((m-1)/n)*sum;
 
     return res;
